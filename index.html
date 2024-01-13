@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text to Speach</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Enter a Text to Speech</h1>
+      <input type="text" placeholder="Text" id="text" />
+      <button onclick="speakFunction()" id="btn">
+        Speak
+        <img src="./keyboard.png" id="btnImage" />
+      </button>
+    </div>
+
+    <!-- Javascript Scripts -->
+    <script>
+      // Input Text Element
+      let text_el = document.getElementById('text');
+      let btn_el = document.getElementById('btn');
+      let btnImage_el = document.getElementById('btnImage');
+      // Function
+      const speakFunction = () => {
+        if (text_el.value.length > 0) {
+          let msg = new SpeechSynthesisUtterance(text_el.value);
+          window.speechSynthesis.speak(msg);
+          console.log(text_el.value);
+          msg.onstart = function () {
+            btnImage_el.src = './speech.gif';
+          };
+          msg.onend = function () {
+            btnImage_el.src = './keyboard.png';
+            text_el.value = '';
+          };
+        } else {
+          console.log('No Text Found');
+          let msg = new SpeechSynthesisUtterance(
+            'No Text Found, Please Enter A text'
+          );
+          window.speechSynthesis.speak(msg);
+          console.log(text_el.value);
+        }
+      };
+    </script>
+  </body>
+</html>
