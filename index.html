@@ -19,9 +19,9 @@
     <!-- Javascript Scripts -->
     <script>
       // Input Text Element
-      let text_el = document.getElementById('text');
-      let btn_el = document.getElementById('btn');
-      let btnImage_el = document.getElementById('btnImage');
+      let text_el = document.getElementById("text");
+      let btn_el = document.getElementById("btn");
+      let btnImage_el = document.getElementById("btnImage");
       // Function
       const speakFunction = () => {
         if (text_el.value.length > 0) {
@@ -29,16 +29,16 @@
           window.speechSynthesis.speak(msg);
           console.log(text_el.value);
           msg.onstart = function () {
-            btnImage_el.src = './speech.gif';
+            btnImage_el.src = "./speech.gif";
           };
           msg.onend = function () {
-            btnImage_el.src = './keyboard.png';
-            text_el.value = '';
+            btnImage_el.src = "./keyboard.png";
+            text_el.value = "";
           };
         } else {
-          console.log('No Text Found');
+          console.log("No Text Found");
           let msg = new SpeechSynthesisUtterance(
-            'No Text Found, Please Enter A text'
+            "No Text Found, Please Enter A text"
           );
           window.speechSynthesis.speak(msg);
           console.log(text_el.value);
