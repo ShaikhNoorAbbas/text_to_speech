@@ -4,19 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Text to Speach</title>
+    <!-- Custom CSS Link -->
     <link rel="stylesheet" href="style.css" />
+    <!-- AOS Animation CDN Link -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Text to Speech & auto Download</h1>
-      <input type="text" placeholder="Text" id="text" />
-      <button onclick="speakFunction()" id="btn">
-        Speak
-        <img src="./keyboard.png" id="btnImage" />
-      </button>
+    <div>
+      <div class="container">
+        <div data-aos="zoom-in" data-aos-duration="2000">
+          <h1>Text to Speech & auto Download</h1>
+          <input type="text" placeholder="Text" id="text" />
+          <button onclick="speakFunction()" id="btn">
+            Speak
+            <img src="./keyboard.png" id="btnImage" />
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Javascript Scripts -->
+    <!-- AOS Animation Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <!-- Custom Javascript -->
     <script>
       // Input Text Element
       let text_el = document.getElementById("text");
@@ -26,6 +39,7 @@
       const speakFunction = () => {
         if (text_el.value.length > 0) {
           let msg = new SpeechSynthesisUtterance(text_el.value);
+          msg.rate = 0.8;
           window.speechSynthesis.speak(msg);
           console.log(text_el.value);
           msg.onstart = function () {
